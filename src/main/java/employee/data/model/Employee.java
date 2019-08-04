@@ -1,12 +1,10 @@
-package employee.model;
+package employee.data.model;
 
 import lombok.Data;
-import org.joda.time.DateTime;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import java.util.Date;
 
 @Data
 @Entity

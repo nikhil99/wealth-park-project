@@ -1,7 +1,7 @@
 package employee.util;
 
 import employee.controller.EmployeeController;
-import employee.model.Employee;
+import employee.data.model.Employee;
 import org.springframework.hateoas.Resource;
 import org.springframework.hateoas.ResourceAssembler;
 import org.springframework.stereotype.Component;

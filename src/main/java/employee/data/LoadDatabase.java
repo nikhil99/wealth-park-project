@@ -1,13 +1,11 @@
 package employee.data;
 
-import employee.model.Employee;
+import employee.data.model.Employee;
 import lombok.extern.slf4j.Slf4j;
 import org.joda.time.DateTime;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-
-import java.util.Date;
 
 @Configuration
 @Slf4j
@@ -31,6 +29,132 @@ public class LoadDatabase {
                     "202 Maison Matsuda",
                     2L,
                     850000d))));
+            log.info(String.format("Preloading %s", repository.save(new Employee(
+                    "Pandurang",
+                    "Parmar",
+                    new DateTime().withDate(1992,2,5).getMillis(),
+                    "201 Maison Matsuda",
+                    0L,
+                    100000d))));
+            log.info(String.format("Preloading %s", repository.save(new Employee(
+                    "Pandurang",
+                    "Parmar",
+                    new DateTime().withDate(1992,2,5).getMillis(),
+                    "201 Maison Matsuda",
+                    0L,
+                    100000d))));
+            log.info(String.format("Preloading %s", repository.save(new Employee(
+                    "Pandurang",
+                    "Parmar",
+                    new DateTime().withDate(1992,2,5).getMillis(),
+                    "201 Maison Matsuda",
+                    0L,
+                    100000d))));
+            log.info(String.format("Preloading %s", repository.save(new Employee(
+                    "Pandurang",
+                    "Parmar",
+                    new DateTime().withDate(1992,2,5).getMillis(),
+                    "201 Maison Matsuda",
+                    0L,
+                    100000d))));
+            log.info(String.format("Preloading %s", repository.save(new Employee(
+                    "Pandurang",
+                    "Parmar",
+                    new DateTime().withDate(1992,2,5).getMillis(),
+                    "201 Maison Matsuda",
+                    0L,
+                    100000d))));
+            log.info(String.format("Preloading %s", repository.save(new Employee(
+                    "Pandurang",
+                    "Parmar",
+                    new DateTime().withDate(1992,2,5).getMillis(),
+                    "201 Maison Matsuda",
+                    0L,
+                    100000d))));
+            log.info(String.format("Preloading %s", repository.save(new Employee(
+                    "Pandurang",
+                    "Parmar",
+                    new DateTime().withDate(1992,2,5).getMillis(),
+                    "201 Maison Matsuda",
+                    0L,
+                    100000d))));
+            log.info(String.format("Preloading %s", repository.save(new Employee(
+                    "Pandurang",
+                    "Parmar",
+                    new DateTime().withDate(1992,2,5).getMillis(),
+                    "201 Maison Matsuda",
+                    0L,
+                    100000d))));
+            log.info(String.format("Preloading %s", repository.save(new Employee(
+                    "Pandurang",
+                    "Parmar",
+                    new DateTime().withDate(1992,2,5).getMillis(),
+                    "201 Maison Matsuda",
+                    0L,
+                    100000d))));
+            log.info(String.format("Preloading %s", repository.save(new Employee(
+                    "Pandurang",
+                    "Parmar",
+                    new DateTime().withDate(1992,2,5).getMillis(),
+                    "201 Maison Matsuda",
+                    0L,
+                    100000d))));
+            log.info(String.format("Preloading %s", repository.save(new Employee(
+                    "Pandurang",
+                    "Parmar",
+                    new DateTime().withDate(1992,2,5).getMillis(),
+                    "201 Maison Matsuda",
+                    0L,
+                    100000d))));
+            log.info(String.format("Preloading %s", repository.save(new Employee(
+                    "Pandurang",
+                    "Parmar",
+                    new DateTime().withDate(1992,2,5).getMillis(),
+                    "201 Maison Matsuda",
+                    0L,
+                    100000d))));
+            log.info(String.format("Preloading %s", repository.save(new Employee(
+                    "Pandurang",
+                    "Parmar",
+                    new DateTime().withDate(1992,2,5).getMillis(),
+                    "201 Maison Matsuda",
+                    0L,
+                    100000d))));
+            log.info(String.format("Preloading %s", repository.save(new Employee(
+                    "Pandurang",
+                    "Parmar",
+                    new DateTime().withDate(1992,2,5).getMillis(),
+                    "201 Maison Matsuda",
+                    0L,
+                    100000d))));
+            log.info(String.format("Preloading %s", repository.save(new Employee(
+                    "Pandurang",
+                    "Parmar",
+                    new DateTime().withDate(1992,2,5).getMillis(),
+                    "201 Maison Matsuda",
+                    0L,
+                    100000d))));
+            log.info(String.format("Preloading %s", repository.save(new Employee(
+                    "Pandurang",
+                    "Parmar",
+                    new DateTime().withDate(1992,2,5).getMillis(),
+                    "201 Maison Matsuda",
+                    0L,
+                    100000d))));
+            log.info(String.format("Preloading %s", repository.save(new Employee(
+                    "Pandurang",
+                    "Parmar",
+                    new DateTime().withDate(1992,2,5).getMillis(),
+                    "201 Maison Matsuda",
+                    0L,
+                    100000d))));
+            log.info(String.format("Preloading %s", repository.save(new Employee(
+                    "Pandurang",
+                    "Parmar",
+                    new DateTime().withDate(1992,2,5).getMillis(),
+                    "201 Maison Matsuda",
+                    0L,
+                    100000d))));
             log.info(String.format("Preloading %s", repository.save(new Employee(
                     "Pandurang",
                     "Parmar",

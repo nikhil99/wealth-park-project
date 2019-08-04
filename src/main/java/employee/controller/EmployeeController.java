@@ -3,9 +3,10 @@ package employee.controller;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import employee.data.requestDtos.EmployeePageDto;
 import employee.data.EmployeeRepository;
-import employee.exception.EmployeeNotFoundException;
-import employee.model.Employee;
+import employee.data.model.Employee;
+import employee.service.EmployeeService;
 import employee.util.EmployeeResourceAssembler;
 import org.springframework.hateoas.Resource;
 import org.springframework.hateoas.Resources;
@@ -23,14 +24,14 @@ import static org.springframework.hateoas.mvc.ControllerLinkBuilder.methodOn;
 @RestController
 public class EmployeeController {
 
-    private final EmployeeRepository repository;
+    private final EmployeeService employeeService;
+
 
     private final EmployeeResourceAssembler assembler;
 
     EmployeeController(EmployeeRepository repository,
                        EmployeeResourceAssembler assembler) {
-
-        this.repository = repository;
+        this.employeeService = new EmployeeService(repository, assembler);
         this.assembler = assembler;
     }
 
@@ -39,49 +40,45 @@ public class EmployeeController {
 
     @GetMapping("/employees")
     public Resources<Resource<Employee>> all() {
-
-        List<Resource<Employee>> employees = repository.findAll().stream()
+        List<Resource<Employee>> employees = employeeService.getAllEmployees().stream()
                 .map(assembler::toResource)
                 .collect(Collectors.toList());
-
         return new Resources<>(employees,
                 linkTo(methodOn(EmployeeController.class).all()).withSelfRel());
     }
 
     @PostMapping("/employees")
-    public Employee newEmployee(@RequestBody Employee newEmployee) {
-        return repository.save(newEmployee);
+    public Resources<Resource<Employee>> allPaged(@RequestBody EmployeePageDto employeePageDto) {
+        List<Resource<Employee>> employees =
+                employeeService.getAllEmployeesPaged(
+                        employeePageDto.getCurrentPage(),
+                        employeePageDto.getMaxPage())
+                        .stream()
+                        .map(assembler::toResource)
+                        .collect(Collectors.toList());
+        return new Resources<>(employees,
+                linkTo(methodOn(EmployeeController.class).all()).withSelfRel());
+    }
+
+    @PostMapping("/employees/new")
+    public Resource<Employee> newEmployee(@RequestBody Employee newEmployee) {
+        return assembler.toResource(employeeService.save(newEmployee));
     }
 
     // Single item
 
     @GetMapping("/employees/{id}")
     public Resource<Employee> one(@PathVariable Long id) {
-
-        Employee employee = repository.findById(id)
-                .orElseThrow(() -> new EmployeeNotFoundException(id));
-
-        return assembler.toResource(employee);
+        return assembler.toResource(employeeService.getEmployee(id));
     }
 
     @PutMapping("/employees/{id}")
-    public Employee updateEmployee(@RequestBody Employee newEmployee, @PathVariable Long id) {
-
-        return repository.findById(id)
-                .map(employee -> {
-                    employee.setFirstName(newEmployee.getFirstName());
-                    employee.setLastName(newEmployee.getLastName());
-                    employee.setBirthDate(newEmployee.getBirthDate());
-                    employee.setAddress(newEmployee.getAddress());
-                    employee.setBossId(newEmployee.getBossId());
-                    employee.setSalary(newEmployee.getSalary());
-                    return repository.save(employee);
-                }).orElseThrow(() ->
-                    new EmployeeNotFoundException(id,"Employee to be updated doesn't exist or is deleted"));
+    public Resource<Employee> updateEmployee(@RequestBody Employee newEmployee, @PathVariable Long id) {
+        return assembler.toResource(employeeService.updateEmployee(newEmployee, id));
     }
 
     @DeleteMapping("/employees/{id}")
     public void deleteEmployee(@PathVariable Long id) {
-        repository.deleteById(id);
+        employeeService.deleteEmployee(id);
     }
 }
