@@ -8,12 +8,17 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 @Service
 public class EmployeeService {
+    private final EmployeeDao employeeDao;
+
     @Autowired
-    private  EmployeeDao employeeDao;
+    public EmployeeService(EmployeeDao employeeDao) {
+        this.employeeDao = employeeDao;
+    }
 
     public List<Employee> getAllEmployees() {
         return employeeDao.getAllEmployees();
     }
+
     public List<Employee> getAllEmployeesPaged(int currentPage, int pageSize) {
         return employeeDao.getAllEmployeesPaged(currentPage, pageSize);
     }

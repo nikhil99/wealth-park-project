@@ -17,10 +17,14 @@ import static org.springframework.hateoas.mvc.ControllerLinkBuilder.methodOn;
 
 @RestController
 public class EmployeeController {
+    private final EmployeeService employeeService;
+    private final EmployeeResourceAssembler assembler;
+
     @Autowired
-    private  EmployeeService employeeService;
-    @Autowired
-    private  EmployeeResourceAssembler assembler;
+    public EmployeeController(EmployeeService employeeService, EmployeeResourceAssembler assembler) {
+        this.employeeService = employeeService;
+        this.assembler = assembler;
+    }
 
     // Aggregate root
 

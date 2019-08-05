@@ -12,8 +12,12 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 @Repository
 public class EmployeeDao {
+    private final EmployeeRepository repository;
+
     @Autowired
-    private  EmployeeRepository repository;
+    public EmployeeDao(EmployeeRepository repository) {
+        this.repository = repository;
+    }
 
     public List<Employee> getAllEmployees() {
         return repository.findAll();
