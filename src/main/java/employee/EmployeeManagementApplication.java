@@ -2,8 +2,12 @@ package employee;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.domain.EntityScan;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 @SpringBootApplication
+@EnableJpaRepositories("employee.data")
+@EntityScan("employee.data.model")
 public class EmployeeManagementApplication {
 
     public static void main(String... args) {

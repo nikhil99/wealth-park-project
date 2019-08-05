@@ -3,17 +3,17 @@ package employee.data.dao;
 import employee.data.EmployeeRepository;
 import employee.exception.EmployeeNotFoundException;
 import employee.data.model.Employee;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
-
+@Repository
 public class EmployeeDao {
-    private final EmployeeRepository repository;
-
-    public EmployeeDao(EmployeeRepository repository) {
-        this.repository = repository;
-    }
+    @Autowired
+    private  EmployeeRepository repository;
 
     public List<Employee> getAllEmployees() {
         return repository.findAll();

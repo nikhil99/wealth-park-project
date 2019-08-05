@@ -1,26 +1,21 @@
-package employee.service;
+package employee.it;
 
-import employee.data.EmployeeRepository;
 import employee.data.dao.EmployeeDao;
 import employee.data.model.Employee;
-import employee.util.EmployeeResourceAssembler;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
-
+@Service
 public class EmployeeService {
-    private final EmployeeDao employeeDao;
-    private final EmployeeResourceAssembler assembler;
-
-    public EmployeeService(EmployeeRepository repository, EmployeeResourceAssembler assembler) {
-        this.employeeDao=new EmployeeDao(repository);
-        this.assembler=assembler;
-    }
+    @Autowired
+    private  EmployeeDao employeeDao;
 
     public List<Employee> getAllEmployees() {
         return employeeDao.getAllEmployees();
     }
     public List<Employee> getAllEmployeesPaged(int currentPage, int pageSize) {
-        return employeeDao.getAllEmployeesPaged(currentPage,pageSize);
+        return employeeDao.getAllEmployeesPaged(currentPage, pageSize);
     }
 
     public Employee save(Employee newEmployee) {
@@ -33,7 +28,7 @@ public class EmployeeService {
     }
 
     public Employee updateEmployee(Employee newEmployee, Long id) {
-        return employeeDao.updateEmployee(newEmployee,id);
+        return employeeDao.updateEmployee(newEmployee, id);
     }
 
     public void deleteEmployee(Long id) {

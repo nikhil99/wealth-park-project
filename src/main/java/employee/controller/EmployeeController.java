@@ -1,40 +1,26 @@
 package employee.controller;
 
-import java.util.List;
-import java.util.stream.Collectors;
-
-import employee.data.requestDtos.EmployeePageDto;
-import employee.data.EmployeeRepository;
 import employee.data.model.Employee;
-import employee.service.EmployeeService;
+import employee.data.requestDtos.EmployeePageDto;
+import employee.it.EmployeeService;
 import employee.util.EmployeeResourceAssembler;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.Resource;
 import org.springframework.hateoas.Resources;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 import static org.springframework.hateoas.mvc.ControllerLinkBuilder.linkTo;
 import static org.springframework.hateoas.mvc.ControllerLinkBuilder.methodOn;
 
 @RestController
 public class EmployeeController {
-
-    private final EmployeeService employeeService;
-
-
-    private final EmployeeResourceAssembler assembler;
-
-    EmployeeController(EmployeeRepository repository,
-                       EmployeeResourceAssembler assembler) {
-        this.employeeService = new EmployeeService(repository, assembler);
-        this.assembler = assembler;
-    }
-
+    @Autowired
+    private  EmployeeService employeeService;
+    @Autowired
+    private  EmployeeResourceAssembler assembler;
 
     // Aggregate root
 
