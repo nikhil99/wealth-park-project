@@ -3,7 +3,7 @@ package employee.ut;
 import employee.EmployeeManagementApplication;
 import employee.data.dao.EmployeeDao;
 import employee.data.model.Employee;
-import employee.it.EmployeeService;
+import employee.service.EmployeeService;
 import org.joda.time.DateTime;
 import org.junit.Assert;
 import org.junit.Test;
@@ -46,7 +46,7 @@ public class EmployeeServiceTest {
         List<Employee> ret = saveNEmployees(5);
         Mockito.when(employeeDao.getAllEmployees())
                 .thenReturn(ret);
-        List<Employee> actualEmployeesList = employeeService.getAllEmployees();
+        List<Employee> actualEmployeesList = employeeService.getAllEmployees(null);
         
         Assert.assertThat(actualEmployeesList.size(), is(5));
     }
@@ -61,7 +61,7 @@ public class EmployeeServiceTest {
             return null;
         }).when(employeeDao).deleteEmployee(any());
         employeeService.deleteEmployee(0l);
-        List<Employee> actualEmployeesList = employeeService.getAllEmployees();
+        List<Employee> actualEmployeesList = employeeService.getAllEmployees(null);
         Assert.assertThat(actualEmployeesList.size(), is(4));
     }
 

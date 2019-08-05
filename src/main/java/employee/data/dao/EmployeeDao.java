@@ -1,10 +1,10 @@
 package employee.data.dao;
 
 import employee.data.EmployeeRepository;
-import employee.exception.EmployeeNotFoundException;
 import employee.data.model.Employee;
+import employee.data.requestDtos.EmployeeFilterDto;
+import employee.exception.EmployeeNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Repository;
@@ -23,9 +23,7 @@ public class EmployeeDao {
         return repository.findAll();
     }
 
-    public List<Employee> getAllEmployeesPaged(int currentPage, int pageSize) {
-        Pageable firstPageWithTwoElements = PageRequest.of(currentPage, pageSize);
-
+    public List<Employee> getAllEmployeesPaged(Pageable firstPageWithTwoElements) {
         return repository.findAll(firstPageWithTwoElements).getContent();
     }
 
@@ -36,6 +34,12 @@ public class EmployeeDao {
     public Employee getEmployee(Long id) {
         return repository.findById(id)
                 .orElseThrow(() -> new EmployeeNotFoundException(id));
+    }
+
+    public List<Employee> getCustomQueryResult(EmployeeFilterDto employeeFilterDto, Pageable pageable) {
+        List<Employee> d = repository.findEmployeeByFirstNameAndLastName(employeeFilterDto.getFirstName(), employeeFilterDto.getLastName());
+
+        return d;
     }
 
     public Employee updateEmployee(Employee newEmployee, Long id) {
